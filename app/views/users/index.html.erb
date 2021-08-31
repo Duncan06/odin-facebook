@@ -10,6 +10,24 @@
           <%= link_to "Login", new_user_session_path %>
         <% end %>
       </div>
+      <div class="notifications">
+        <% if Friend.any? { |inv| (inv.user_id == current_user.id) && (!inv.accepted?) } %>
+          <h3>Pending friend requests</h3>
+          <ul>
+            <% @friends.find_each do |inv| %>
+            <% if inv.user_id == current_user.id %>
+              <% user = User.find_by(id: inv.creator_id) %>
+              <div>
+                <% if !inv.accepted? %>
+                  <%= user.email[/[^@]+/] %>
+                  <%= button_to "Accept friend request", friend_path(id: inv.id), method: :patch %>
+                <% end %>
+              </div>
+            <% end %>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     </div>
   </div>
 </nav>
@@ -36,19 +54,3 @@
   <% end %>
 </ul>
 
-<% if Friend.find_by(user_id: current_user.id) != nil %>
-  <h3>Pending friend requests</h3>
-  <ul>
-    <% @friends.find_each do |inv| %>
-      <% if inv.user_id == current_user.id %>
-        <% user = User.find_by(id: inv.creator_id) %>
-        <div>
-          <% if !inv.accepted? %>
-            <%= user.email[/[^@]+/] %>
-            <%= button_to "Accept friend request", friend_path(id: inv.id), method: :patch %>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-  </ul>
-<% end %>
