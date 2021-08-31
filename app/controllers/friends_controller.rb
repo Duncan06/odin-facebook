@@ -36,7 +36,7 @@ class FriendsController < ApplicationController
   private
 
   def friend_params
-    params.permit(:user_id)
+    params.permit(:user_id, :creator_id)
   end
 
 end
