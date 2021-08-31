@@ -4,11 +4,12 @@ class FriendsController < ApplicationController
 
     if @friend.save
       @friend.invited!
-      flash.now[:notice] = "Friend invite sent!"
+      flash[:notice] = "Friend invite sent!"
     else
-      flash.now[:alert] = "Friend invite could not be sent."
+      flash[:alert] = "Friend invite could not be sent."
     end
 
+    redirect_to root_path
   end
 
   def update
@@ -16,17 +17,20 @@ class FriendsController < ApplicationController
 
     if @friend && @friend.invited?
       @friend.accepted!
-      flash.now[:notice] = "Friend invite accepted!"
+      flash[:notice] = "Friend invite accepted!"
     else
-      flash.now[:notice] = "Not sent friend invite."
+      flash[:notice] = "Not sent friend invite."
     end
 
+    redirect_to root_path
   end
 
   def destroy
     @friend = Friend.find(params[:id])
 
     @friend.destroy
+
+    redirect_to root_path
   end
 
   private

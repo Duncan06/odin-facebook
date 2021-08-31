@@ -19,7 +19,18 @@
     <% if user.email != current_user.email%>
       <li>
         <%# Get only first part of email for username %>
-        <%= user.email[/[^@]+/] %>
+        <div>
+          <%= user.email[/[^@]+/] %>
+          <% friend = Friend.find_by(user_id: user.id) %>
+            <% unless friend.nil? || friend.status.nil? %>
+              <p><%= friend.status %></p>
+            <% end %>
+            <% if friend.nil? %>
+              <%= button_to "Add friend", friends_path(user_id: user.id) %>
+            <% else %>
+              <%= button_to "Cancel friend request", friend_path(id: friend.id), method: :delete %>
+            <% end %>
+        </div>
       </li>
     <% end %>
   <% end %>
