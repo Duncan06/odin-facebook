@@ -1,0 +1,18 @@
+<ul>
+  <% if user.email != current_user.email%>
+    <li>
+      <%# Get only first part of email for username %>
+        <div>
+          <%= user.email[/[^@]+/] %>
+          <% friend = Friend.find_by(user_id: user.id) %>
+            <% if friend.nil? %>
+              <%= button_to "Add friend", friends_path(user_id: user.id, creator_id: current_user.id) %>
+            <% elsif friend.accepted? %>
+              <%= button_to "Unfriend", friend_path(id: friend.id), method: :delete %>
+            <% else %>
+              <%= button_to "Cancel friend request", friend_path(id: friend.id), method: :delete %>
+            <% end %>
+        </div>
+    </li>
+  <% end %>
+</ul>
