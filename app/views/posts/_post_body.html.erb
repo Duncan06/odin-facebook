@@ -1,0 +1,14 @@
+<div>
+  <div class="title">
+    <% user = User.find_by(id: post.creator_id) %>
+    <p>
+      <%# Get only first part of email for username %>
+      Post creator: <%= user.email[/[^@]+/] %>
+    </p>
+   </div>
+  <div class="body">
+    <p>
+      <%= post.body %>
+    </p>
+  </div>
+</div>
