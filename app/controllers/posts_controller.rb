@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
 
-  include PostsHelper
-
   def index
     @posts = Post.all
   end
@@ -16,6 +14,28 @@ class PostsController < ApplicationController
     @post.save
 
     flash[:notice] = "Post created!"
+
+    redirect_to action: :index
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+
+    flash[:notice] - "Post updated!"
+
+    redirect_to action: :index
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    
+    flash[:notice] = "Post deleted!"
 
     redirect_to action: :index
   end
