@@ -19,6 +19,7 @@
               <% user = User.find_by(id: inv.creator_id) %>
               <div>
                 <% if !inv.accepted? %>
+                  <%# Get only first part of email for username %>
                   <%= user.email[/[^@]+/] %>
                   <%= button_to "Accept friend request", friend_path(id: inv.id), method: :patch %>
                 <% end %>
