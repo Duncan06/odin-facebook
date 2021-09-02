@@ -22,6 +22,9 @@
   flex: 1;
   position: absolute;
   right: 1%;
+ }
+
+ .buttons {
   text-align: right;
  }
 

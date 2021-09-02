@@ -6,6 +6,13 @@ class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 
+  # Add red and green reporting
+  ENV['RAILS_ENV'] ||= 'test'
+  require File.expand_path('../../config/environment', __FILE__)
+  require 'rails/test_help'
+  require "minitest/reporters"
+  Minitest::Reporters.use!
+
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
