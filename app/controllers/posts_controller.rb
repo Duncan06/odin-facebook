@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @friends = Friend.all
+    @likes = Like.all
   end
 
   def new
