@@ -1,8 +1,13 @@
 class LikesController < ApplicationController
+
   def create
-    @like = Like.new(like_params)
-    @like.user_id = current_user.id 
-    @like.save
+    @post = Post.find(params[:post_id])
+
+    if !already_liked?
+      @post.likes.create(user_id: current_user.id)
+    else
+      flash[:notice] = "You have already liked this posting."
+    end
 
     flash[:notice] = "Like submitted"
 
@@ -10,7 +15,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = Like.where(post_id: params[post_id], user_id: params[user_id])
+    @like = Like.find(params[:id])
     @like.destroy
 
     flash[:notice] = "Unlike submitted"
@@ -20,8 +25,8 @@ class LikesController < ApplicationController
 
   private
 
-  def like_params
-    params.permit(:post_id)
+  def already_liked?
+    Like.where(user_id: current_user.id, post_id: params[:post_id]).exists?
   end
 
 end
