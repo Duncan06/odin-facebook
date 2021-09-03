@@ -13,6 +13,6 @@
   </div>
   <div class="likes">
     <%= button_to "Like", post_likes_path(post_id: post.id), method: :create %>
-    <%= button_to "Unlike", post_like_path(id: post_like.id), method: :delete %>
+    <%= button_to "Unlike", likes_path(post_id: post.id, user_id: current_user.id), method: :delete %>
   </div>
 </div>

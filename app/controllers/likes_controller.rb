@@ -10,6 +10,12 @@ class LikesController < ApplicationController
   end
 
   def destroy
+    @like = Like.where(post_id: params[post_id], user_id: params[user_id])
+    @like.destroy
+
+    flash[:notice] = "Unlike submitted"
+
+    redirect_back fallback_location: posts_url
   end
 
   private
