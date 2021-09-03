@@ -12,18 +12,22 @@
     </p>
   </div>
   <div class="likes">
-    <% already_like = post.likes.find { |like| like.user_id == current_user.id } %>
-      <% if !already_like %>
-        <%= button_to "Like", post_likes_path(post), method: :create %>
-      <% else %>
-        <%= button_to "Unlike", like_path(already_like), method: :delete %>
+    <div class="like_button">
+      <% already_like = post.likes.find { |like| like.user_id == current_user.id } %>
+        <% if !already_like %>
+          <%= button_to "Like", post_likes_path(post), method: :create %>
+        <% else %>
+          <%= button_to "Unlike", like_path(already_like), method: :delete %>
+        <% end %>
+    </div>
+    <div class="Number_of_likes">
+      <% if post.likes.count != 0 %>
+        <p>
+          <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes' %>
+        </p>
       <% end %>
+    </div>
   </div>
-  <div class="Number_of_likes">
-    <% if post.likes.count != 0 %>
-      <p>
-        <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes' %>
-      </p>
-    <% end %>
+  <div class="comments">
   </div>
 </div>
