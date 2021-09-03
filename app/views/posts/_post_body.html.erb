@@ -5,10 +5,14 @@
       <%# Get only first part of email for username %>
       Post creator: <%= user.email[/[^@]+/] %>
     </p>
-   </div>
+  </div>
   <div class="body">
     <p>
       <%= post.body %>
     </p>
+  </div>
+  <div class="likes">
+    <%= button_to "Like", post_likes_path(post_id: post.id), method: :create %>
+    <%= button_to "Unlike", post_like_path(id: post_like.id), method: :delete %>
   </div>
 </div>
