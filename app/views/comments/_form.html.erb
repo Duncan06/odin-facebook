@@ -1,12 +1,13 @@
-<h5> 
+<h5>
   Post a Comment
 </h5>
 
-<%= form_with model: @comment do |f| %>
+<%= form_with model: [commentable, comment] do |f| %>
   <p>
     <%= f.label :body %><br />
     <%= f.text_area :body %>
   </p>
+  <% post_id = commentable.id %>
   <p>
     <%= f.submit "Comment" %>
   </p>

@@ -1,16 +1,12 @@
 class CommentsController < ApplicationController
-    
-  def create
-    @post = Post.find(params[:post_id])
-    
-    user = User.find(current_user.id)
-    name = user.email[/[^@]+/]
+  include Commentable
 
-    @post.comments.create(author: name, body: params[:body])
+  before_action :set_commentable
 
-    flash[:notice] = "Comment created!"
+  private
 
-    redirect_back fallback_location: posts_url
+  def set_commentable
+    @commentable = Post.find(params[:post_id])
   end
 
 end
