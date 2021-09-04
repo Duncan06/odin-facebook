@@ -2,8 +2,7 @@
   <div class="title">
     <% user = User.find_by(id: post.creator_id) %>
     <p>
-      <%# Get only first part of email for username %>
-      Post creator: <%= user.email[/[^@]+/] %>
+      Post creator: <%= post.author %>
     </p>
   </div>
   <div class="body">
@@ -28,6 +27,10 @@
       <% end %>
     </div>
   </div>
-  <div class="comments">
-  </div>
+
+  <% if post.comments.count != 0 %>
+    <h3>Comments (<%= post.comments.size %>)</h3>
+  <% end %>
+  <%= render partial: 'posts_comment', collection: post.comments, as: :comment %>
+  <%= render 'comment_form' %>
 </div>

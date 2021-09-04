@@ -13,6 +13,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.creator_id = current_user.id
+
+    user = User.find(current_user.id)
+    name = user.email[/[^@]+/]
+    @post.author = name
+
     @post.save
 
     flash[:notice] = "Post created!"
