@@ -31,6 +31,6 @@
   <% if post.comments.count != 0 %>
     <h3>Comments (<%= post.comments.size %>)</h3>
   <% end %>
-  <%= render partial: 'posts_comment', collection: post.comments, as: :comment %>
+  <%= render partial: 'posts_comment', collection: @comments %>
   <%= render 'comment_form' %>
 </div>
