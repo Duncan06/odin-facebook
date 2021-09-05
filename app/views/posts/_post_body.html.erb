@@ -1,4 +1,4 @@
-<% if Friend.find_by(creator_id: current_user.id, user_id: post.creator_id, status: "accepted") ||
+<% if Friend.exists?(creator_id: current_user.id, user_id: post.creator_id, status: "accepted") ||
    current_user.id == post.creator_id %>
   <div>
     <div class="title">
