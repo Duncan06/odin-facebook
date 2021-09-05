@@ -8,14 +8,14 @@ module Commentable
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
+    @comment.parent_id = params[:post_id]
 
     if @comment.save
-      redirect_to @commentable
+      redirect_back fallback_location: posts_url
     else
       flash[:notice] = "Unable to submit comment."
     end
 
-    redirect_back fallback_location: posts_url
   end
 
   private

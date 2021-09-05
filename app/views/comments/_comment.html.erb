@@ -1,6 +1,8 @@
 <div class="comment">
   <h4>
-    Comment by <%= comment.user.name %>
+    <% user = User.find(comment.user_id) %>
+    <% name = user.email[/[^@]+/] %>
+    Comment by <%= name %>
   </h4>
   <p>
     <%= comment.body %>
@@ -10,6 +12,7 @@
     <%= button_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
   <p>
-    Posted <%= distance_of_time_in_words(comment.post.created_at, comment.created_at) %> later
+    <% current_post = Post.find(comment.parent_id) %>
+    Commented <%= distance_of_time_in_words(current_post.created_at, comment.created_at) %> later
   </p>
 </div>

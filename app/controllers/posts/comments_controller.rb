@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Posts::CommentsController < ApplicationController
   include Commentable
 
   before_action :set_commentable
