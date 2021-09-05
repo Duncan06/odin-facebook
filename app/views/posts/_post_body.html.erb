@@ -1,37 +1,40 @@
-<div>
-  <div class="title">
-    <% user = User.find_by(id: post.creator_id) %>
-    <p>
-      Post creator: <%= post.author %>
-    </p>
-  </div>
-  <div class="body">
-    <p>
-      <%= post.body %>
-    </p>
-  </div>
-  <div class="likes">
-    <div class="like_button">
-      <% already_like = post.likes.find { |like| like.user_id == current_user.id } %>
-        <% if !already_like %>
-          <%= button_to "Like", post_likes_path(post), method: :create %>
-        <% else %>
-          <%= button_to "Unlike", post_like_path(id: already_like.id, post_id: already_like.post_id), method: :delete %>
+<% if Friend.find_by(creator_id: current_user.id, user_id: post.creator_id, status: "accepted") ||
+   current_user.id == post.creator_id %>
+  <div>
+    <div class="title">
+      <% user = User.find_by(id: post.creator_id) %>
+      <p>
+        Post creator: <%= post.author %>
+      </p>
+    </div>
+    <div class="body">
+      <p>
+        <%= post.body %>
+      </p>
+    </div>
+    <div class="likes">
+      <div class="like_button">
+        <% already_like = post.likes.find { |like| like.user_id == current_user.id } %>
+          <% if !already_like %>
+            <%= button_to "Like", post_likes_path(post), method: :create %>
+          <% else %>
+            <%= button_to "Unlike", post_like_path(id: already_like.id, post_id: already_like.post_id), method: :delete %>
+          <% end %>
+      </div>
+      <div class="Number_of_likes">
+        <% if post.likes.count != 0 %>
+          <p>
+            <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes' %>
+          </p>
         <% end %>
+      </div>
     </div>
-    <div class="Number_of_likes">
-      <% if post.likes.count != 0 %>
-        <p>
-          <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes' %>
-        </p>
-      <% end %>
-    </div>
-  </div>
 
-  <% if post.comments.count != 0 %>
-    <h3>Comments (<%= post.comments.size %>)</h3>
-  <% end %>
-  <%= render post.comments %>
-  <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: post } %>
-  <hr />
-</div>
+    <% if post.comments.count != 0 %>
+      <h3>Comments (<%= post.comments.size %>)</h3>
+    <% end %>
+    <%= render post.comments %>
+    <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: post } %>
+    <hr />
+  </div>
+<% end %>
