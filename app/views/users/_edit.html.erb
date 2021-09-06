@@ -3,7 +3,7 @@
   <h5>Add or change profile description</h5>
   <p>
     <%= f.label :profile_description %>
-    <%= f.text_area :profile_description %>
+    <%= f.text_field :profile_description, maxlength: 255 %>
   </p>
   <h5>Change email</h5>
   <p>

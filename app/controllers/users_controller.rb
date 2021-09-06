@@ -21,6 +21,15 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    flash.notice = "User deleted!"
+
+    redirect_to new_user_session_path
+  end
+
   private
 
   def user_params
