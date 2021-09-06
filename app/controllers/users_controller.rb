@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.where(creator_id: @user.id)
   end
 
   def edit
@@ -17,6 +18,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+    puts @user.inspect
+    @user.avatar.purge
+    @user.avatar.attach(params[:avatar])
+    puts @user.avatar.attached?
 
     redirect_to user_path(@user)
   end
@@ -33,7 +38,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:profile_description, :email, :avatar)
+    params.require(:user).permit(:profile_description, :avatar)
   end
 
   def get_friends

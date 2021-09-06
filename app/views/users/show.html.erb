@@ -1,0 +1,17 @@
+<h1>
+  Profile Page
+</h1>
+<h3>
+  <%= @user.email[/[^@]+/] %>
+</h3>
+<div class="profile_picture">
+  <% if @user.avatar.attached? %>
+    <%= image_tag(@user.avatar) %>
+  <% end %>
+</div>
+<div class="profile_description">
+  <%= current_user.profile_description %>
+</div>
+<div class="posts">
+  <%# render partial: "posts/post_body", colleciton: @posts, as: :post %>
+</div>

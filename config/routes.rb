@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :path_prefix => 'my'
   root 'users#index'
 
-  resources :users, only: [:index, :show]
+  resources :users
 
   resources :friends, only: [:create, :update, :destroy]
 
