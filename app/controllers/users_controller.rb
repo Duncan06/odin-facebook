@@ -18,10 +18,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    puts @user.inspect
-    @user.avatar.purge
-    @user.avatar.attach(params[:avatar])
-    puts @user.avatar.attached?
+    if @user.avatar != nil
+      @user.avatar.purge
+    end
+    @user.avatar.attach(user_params[:avatar])
 
     redirect_to user_path(@user)
   end
