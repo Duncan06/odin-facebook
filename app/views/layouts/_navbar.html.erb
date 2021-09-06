@@ -2,6 +2,8 @@
   <div class="navbar-end">
     <div class="navbar-item">
       <div class="buttons">
+        <%= button_to "Profile", user_path(current_user), method: :get %>
+        <%= button_to "Update profile", edit_user_path(current_user), method: :get %>
         <%= button_to "Posts page", posts_path, method: :get %>
         <%= button_to "Users list", users_path, method: :get %>
         <% if current_user %>

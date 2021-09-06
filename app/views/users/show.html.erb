@@ -6,7 +6,7 @@
 </h3>
 <div class="profile_picture">
   <% if @user.avatar.attached? %>
-    <%= image_tag(@user.avatar) %>
+    <%= image_tag(@user.avatar, size: "100x100") %>
   <% end %>
 </div>
 <div class="profile_description">
