@@ -13,5 +13,7 @@
   <%= @user.profile_description %>
 </div>
 <div class="posts">
-  <%# render partial: "posts/post_body", colleciton: @posts, as: :post %>
+  <% @posts.each do |post| %>
+    <%= render partial: "posts/post_body", locals: { post: post } %>
+  <% end %>
 </div>
