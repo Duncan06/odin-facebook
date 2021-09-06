@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :likes
-  has_one_attatched :avatar
+  has_one_attached :avatar
 end
