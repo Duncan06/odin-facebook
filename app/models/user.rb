@@ -9,4 +9,10 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
+
+
+  after_create :welcome_send
+  def welcome_send
+    UserMailer.welcome_email(self).deliver
+  end
 end
