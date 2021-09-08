@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :get_friends, only: [:index, :show, :edit]
+  after_action :send_mail, only: [:create]
 
   def index
     @users = User.all
@@ -45,4 +46,7 @@ class UsersController < ApplicationController
     @friends = Friend.all
   end
 
+  def send_mail
+      UserMailer.with(user: self).welcome_email.deliver
+  end
 end
