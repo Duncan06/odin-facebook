@@ -29,7 +29,11 @@
   text-align: right;
  }
 
+ .buttons > * {
+  margin-right: 16px;
+ }
  .navbar-item {
   padding: 10px;
   right: 10%;
  }
+
