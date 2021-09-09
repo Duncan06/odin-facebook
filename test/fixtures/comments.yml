@@ -2,14 +2,10 @@
 
 one:
   user: one
-  commentable: one
-  commentable_type: Commentable
   parent_id: 1
   body: MyText
 
 two:
   user: two
-  commentable: two
-  commentable_type: Commentable
   parent_id: 1
   body: MyText

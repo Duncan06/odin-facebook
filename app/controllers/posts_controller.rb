@@ -17,6 +17,7 @@ class PostsController < ApplicationController
     user = User.find(current_user.id)
     name = user.email[/[^@]+/]
     @post.author = name
+    @post.image.attach(post_params[:image])
 
     @post.save
 
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    
+
     flash[:notice] = "Post deleted!"
 
     redirect_to action: :index
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:body)
+    params.permit(:body, :image)
   end
-    
+
 end
