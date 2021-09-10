@@ -15,34 +15,34 @@
  */
 
  .navbar {
-  display:flex;
+     display:flex;
  }
 
 
  .navbar-end {
-  display: flex;
-  flex: 1;
-  background-color:lightblue;
-  height: 35px;
+     display: flex;
+     flex: 1;
+     background-color:lightblue;
+     height: 35px;
  }
 
  .buttons {
-  display:flex;
-  text-align: right;
-  position: absolute;
-  top: 2%;
-  right: 0;
+     display:flex;
+     text-align: right;
+     position: absolute;
+     top: 2%;
+     right: 0;
  }
 
  .buttons > * {
-  margin-right: 16px;
+     margin-right: 16px;
  }
  .navbar-item {
-  padding: 10px;
-  right: 10%;
+     padding: 10px;
+     right: 10%;
  }
 
  .title {
-  background-color:grey;
-  width:200px;
+     display: inline-block;
+     background-color:grey;
  }
