@@ -18,15 +18,20 @@
   display:flex;
  }
 
+
  .navbar-end {
+  display: flex;
   flex: 1;
-  position: absolute;
-  right: 1%;
+  background-color:lightblue;
+  height: 35px;
  }
 
  .buttons {
   display:flex;
   text-align: right;
+  position: absolute;
+  top: 2%;
+  right: 0;
  }
 
  .buttons > * {
@@ -37,3 +42,7 @@
   right: 10%;
  }
 
+ .title {
+  background-color:grey;
+  width:200px;
+ }
