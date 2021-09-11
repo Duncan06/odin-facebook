@@ -15,12 +15,13 @@
  */
 
  .navbar {
-     display:flex;
+     display: flex;
  }
 
 
  .navbar-end {
      display: flex;
+     border: groove;
      flex: 1;
      background-color:lightblue;
      height: 35px;
@@ -30,7 +31,7 @@
      display:flex;
      text-align: right;
      position: absolute;
-     top: 2%;
+     top: 2.25%;
      right: 0;
  }
 
@@ -45,4 +46,15 @@
  .title {
      display: inline-block;
      background-color:grey;
+     border: inset;
+ }
+
+ .body {
+     display: block;
+     background-color: lightblue;
+     width: 500px;
+     height: 100px;
+     padding: 20px;
+     padding-left: 0px;
+     border: ridge;
  }
