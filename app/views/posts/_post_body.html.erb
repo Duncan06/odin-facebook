@@ -12,7 +12,7 @@
         <%= post.body %>
       </p>
     </div>
-    <div class="post-image">
+    <div class="post_image_display">
       <% if post.image.attached? %>
         <%= image_tag(post.image, size: "100x100") %>
       <% end %>
@@ -35,11 +35,13 @@
       </div>
     </div>
 
+    <div class="comments">
     <% if post.comments.count != 0 %>
       <h3>Comments (<%= post.comments.size %>)</h3>
     <% end %>
     <%= render post.comments %>
     <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: post } %>
     <hr />
+    </div>
   </div>
 <% end %>

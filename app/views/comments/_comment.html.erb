@@ -4,10 +4,10 @@
     <% name = user.email[/[^@]+/] %>
     Comment by <%= name %>
   </h4>
-  <p>
+  <div class="comment_post">
     <%= comment.body %>
-  </p>
-  <div>
+  </div>
+  <div class="comment_time">
     <p>
       <% current_post = Post.find(comment.parent_id) %>
       Commented <%= distance_of_time_in_words(current_post.created_at, comment.created_at) %> later

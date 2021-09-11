@@ -3,10 +3,11 @@
 </h5>
 
 <%= form_with model: [commentable, comment] do |f| %>
-  <p>
+  <div class="comment_text_post"
     <%= f.label :body %><br />
     <%= f.text_area :body %>
-  </p>
+  </div>
+  <div class="comment_submit">
     <%= f.submit "Comment" %>
-  </p>
+  </div>
 <% end %>
