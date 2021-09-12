@@ -1,4 +1,4 @@
-/*
+/
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -35,7 +35,7 @@
      display:flex;
      text-align: right;
      position: absolute;
-     top: 1%;
+     top: 2%;
      right: 0;
  }
 

@@ -20,8 +20,11 @@ class PostsController < ApplicationController
     @post.image.attach(post_params[:image])
 
     @post.save
-
-    flash[:notice] = "Post created!"
+    if !@post.body.empty? || @post.image.attached?
+      flash[:notice] = "Post created!"
+    else
+      flash[:alert] = "You must provide a body or an image to post."
+    end
 
     redirect_to action: :index
   end

@@ -10,12 +10,13 @@ module Commentable
     @comment.user = current_user
     @comment.parent_id = params[:post_id]
 
-    if @comment.save
-      redirect_back fallback_location: posts_url
+    if !@comment.body.empty? && @comment.save
+      flash[:notice] = "Comment created!"
     else
-      flash[:notice] = "Unable to submit comment."
+      flash[:alert] = "Unable to submit comment."
     end
 
+    redirect_back fallback_location: posts_url
   end
 
   private
