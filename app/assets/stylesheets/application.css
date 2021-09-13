@@ -26,26 +26,24 @@
  .navbar-end {
      display: flex;
      border: groove;
-     flex: 1;
      background-color:lightblue;
-     height: 35px;
+     flex: .25;
+     justify-content: flex-end;
+ }
+
+ .navbar-item {
+     display: flex;
+     justify-content: flex-end;
+     flex: .25;
+     padding-right: .5%;
  }
 
  .buttons {
-     display:flex;
-     text-align: right;
-     position: absolute;
-     top: 2%;
-     right: 0;
+     display: flex;
+     flex: 1;
+     justify-content: space-around;
  }
 
- .buttons > * {
-     margin-right: 16px;
- }
- .navbar-item {
-     padding: 10px;
-     right: 10%;
- }
 
  .title {
      display: inline-block;
@@ -66,6 +64,7 @@
      border-radius: 5px;
  }
 
- div:not(.navbar, .navbar-end, .buttons, .body) {
+ div:not(.navbar, .navbar-end, .navbar-item, .buttons,
+         .body) {
      margin-top: 1%;
  }
