@@ -14,12 +14,16 @@
   </head>
 
   <body>
-    <div class="notice">
-      <%= notice %>
-    </div>
-    <div class="alert">
-      <%= alert %>
-    </div>
+    <% unless notice.nil? %>
+      <div class="notice">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% unless alert.nil? %>
+      <div class="alert">
+        <%= alert %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
