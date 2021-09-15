@@ -69,3 +69,17 @@
          .body) {
      margin-top: 1%;
  }
+
+ .notice {
+     display: inline-block;
+     background: lightgreen;
+     border: 3px solid green;
+     border-radius: 5px;
+ }
+
+ .alert {
+     display: inline-block;
+     background: lightpink;
+     border: 3px solid red;
+     border-radius: 5px;
+ }
