@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users, :path_prefix => 'my'
-  root 'users#index'
+  devise_scope :user do
+    authenticated :user do
+      root 'users#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root to: "devise/sessions#new"
+    end
+  end
 
   resources :users
 
