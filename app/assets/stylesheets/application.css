@@ -45,6 +45,31 @@
      justify-content: space-around;
  }
 
+ .fr-holder {
+     display: flex;
+     justify-content: flex-end;
+     flex: .125;
+ }
+
+ .notifications-box {
+     display: flex;
+     flex: .1 .1 2.5%;
+     border: 3px solid yellow;
+     background: lightyellow;
+ }
+
+ .notifications {
+     display: flex;
+     justify-content: flex-start;
+     flex-wrap: wrap;
+ }
+
+ .friend-request {
+     display: flex;
+     justify-content: flex-start;
+     gap: 10px;
+ }
+
 
  .title {
      display: inline-block;

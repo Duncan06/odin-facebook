@@ -12,23 +12,25 @@
           <%= button_to "Login", new_user_session_path %>
         <% end %>
       </div>
+    </div>
+  </div>
+  <% if Friend.any? { |inv| (inv.user_id == current_user.id) && (!inv.accepted?) } %>
+  <div class="fr-holder">
+    <div class="notifications-box">
       <div class="notifications">
-        <% if Friend.any? { |inv| (inv.user_id == current_user.id) && (!inv.accepted?) } %>
           <h3>Pending friend requests</h3>
-          <ul>
             <% @friends.find_each do |inv| %>
-            <% if inv.user_id == current_user.id %>
-              <% user = User.find_by(id: inv.creator_id) %>
-              <div>
-                <% if !inv.accepted? %>
-                  <%# Get only first part of email for username %>
-                  <%= user.email[/[^@]+/] %>
-                  <%= button_to "Accept friend request", friend_path(id: inv.id), method: :patch %>
-                <% end %>
-              </div>
+              <% if inv.user_id == current_user.id %>
+                <% user = User.find_by(id: inv.creator_id) %>
+                <div class="friend-request">
+                  <% if !inv.accepted? %>
+                    <%# Get only first part of email for username %>
+                    <%= user.email[/[^@]+/] %>
+                    <%= button_to "Accept friend request", friend_path(id: inv.id), method: :patch %>
+                  <% end %>
+                </div>
+              <% end %>
             <% end %>
-            <% end %>
-          </ul>
         <% end %>
       </div>
     </div>
