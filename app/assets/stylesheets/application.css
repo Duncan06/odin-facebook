@@ -45,7 +45,15 @@
      justify-content: space-around;
  }
 
+ .friend_request_button {
+     white-space: nowrap;
+ }
+
  .fr-holder {
+     display: none;
+ }
+
+ .fr-holder.open {
      display: flex;
      position: absolute;
      right: 0;

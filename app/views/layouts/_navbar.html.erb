@@ -2,6 +2,7 @@
   <div class="navbar-end">
     <div class="navbar-item">
       <div class="buttons">
+        <button class="friend_request_button">Friend requests</button>
         <%= button_to "Profile", user_path(current_user), method: :get %>
         <%= button_to "Update profile", edit_user_path(current_user), method: :get %>
         <%= button_to "Posts page", posts_path, method: :get %>
@@ -36,3 +37,14 @@
     </div>
   </div>
 </nav>
+
+<script>
+  function handleClick(e) {
+    const friends = document.querySelector('.fr-holder');
+    friends.classList.add('open');
+  }
+  const friend_request = document.querySelector('.friend_request_button');
+
+  friend_request.addEventListener('click', handleClick);
+</script>
+
