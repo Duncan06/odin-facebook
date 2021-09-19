@@ -6,7 +6,7 @@
           <% total = @friends.where(user_id: current_user.id, status: "invited") %>
 
           <% friends_amount = "Friend requests(#{total.count})" %>
-          <button aria-expanded="false" aria-controls="friend-requests"
+          <button aria-expanded="false" aria-controls="fr-holder"
            class="friend_request_button"><%= friends_amount %></button>
 
         <% end %>
