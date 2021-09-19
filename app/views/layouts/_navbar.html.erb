@@ -6,7 +6,9 @@
           <% total = @friends.where(user_id: current_user.id, status: "invited") %>
 
           <% friends_amount = "Friend requests(#{total.count})" %>
-          <button class="friend_request_button"><%= friends_amount %></button>
+          <button aria-expanded="false" aria-controls="friend-requests"
+           class="friend_request_button"><%= friends_amount %></button>
+
         <% end %>
         <%= button_to "Profile", user_path(current_user), method: :get %>
         <%= button_to "Update profile", edit_user_path(current_user), method: :get %>
@@ -42,20 +44,23 @@
 </nav>
 
 <script>
-  function handleClick(e) {
-    const friends = document.querySelector('.fr-holder');
-    const friends_open = document.querySelector('.fr-holder.open');
+  const friends = document.querySelector('button[aria-expanded]');
+  const friend_requests = document.querySelector('.fr-holder');
 
-    if (friends_open == null) {
-      friends.classList.add('open');
+  function toggleFriends({ target }) {
+    const expanded = target.getAttribute('aria-expanded') ===
+    'true' || false;
+    friends.setAttribute('aria-expanded', !expanded);
+
+    const currExpanded = target.getAttribute('aria-expanded');
+    if (currExpanded === 'true') {
+      friend_requests.classList.add('open');
     }
     else {
-      friends_open.classList.remove('open');
+      friend_requests.classList.remove('open');
     }
   }
 
-  const friend_request = document.querySelector('.friend_request_button');
-
-  friend_request.addEventListener('click', handleClick);
+  friends.addEventListener('click', toggleFriends);
 </script>
 
